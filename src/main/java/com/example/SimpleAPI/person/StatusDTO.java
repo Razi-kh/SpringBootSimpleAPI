@@ -1,28 +1,28 @@
 package com.example.SimpleAPI.person;
 
 public class StatusDTO {
-    private int count;
-    private int avg;
+    private Long count;
+    private Double avg;
 
-    public StatusDTO(int count, int avg) {
+    public StatusDTO(Long count, Double avg) {
         this.count = count;
         this.avg = avg;
     }
 
 
-    public int getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 
-    public int getAvg() {
+    public Double getAvg() {
         return avg;
     }
 
-    public void setAvg(int avg) {
+    public void setAvg(Double avg) {
         this.avg = avg;
     }
 }

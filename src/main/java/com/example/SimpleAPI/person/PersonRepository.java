@@ -8,6 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-//    Optional<Person> findPersonByIdIs(Long id);
+    //    Optional<Person> findPersonByIdIs(Long id);
+    @Query("SELECT new com.example.SimpleAPI.person.StatusDTO(count(p),AVG(p.age)) FROM persons p")
+    StatusDTO getStat();
 
 }

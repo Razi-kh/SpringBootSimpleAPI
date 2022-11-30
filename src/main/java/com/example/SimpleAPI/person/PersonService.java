@@ -75,14 +75,18 @@ public class PersonService {
 //        }
 //        return Avg_age / personList.size();
 //    }
+ //   public StatusDTO CountAndAvg() {
+//        List<Person> personList = personRepository.findAll();
+//        Double Avg_age = 0.0;
+//        for (Person person : personList) {
+//            Avg_age += person.getAge();
+//        }
+//        Long personsize= Long.valueOf(personRepository.findAll().size());
+//        StatusDTO statusDT = new StatusDTO(personsize, (Avg_age / personList.size()));
+//        return statusDT;
+//    }
     public StatusDTO CountAndAvg() {
-        List<Person> personList = personRepository.findAll();
-        int Avg_age = 0;
-        for (Person person : personList) {
-            Avg_age += person.getAge();
-        }
-        StatusDTO statusDT = new StatusDTO(personRepository.findAll().size(), (Avg_age / personList.size()));
-        return statusDT;
+        return personRepository.getStat();
     }
 
 }
