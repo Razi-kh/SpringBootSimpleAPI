@@ -1,6 +1,9 @@
 package com.example.SimpleAPI.person;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -75,7 +78,7 @@ public class PersonService {
 //        }
 //        return Avg_age / personList.size();
 //    }
- //   public StatusDTO CountAndAvg() {
+    //   public StatusDTO CountAndAvg() {
 //        List<Person> personList = personRepository.findAll();
 //        Double Avg_age = 0.0;
 //        for (Person person : personList) {
@@ -87,6 +90,21 @@ public class PersonService {
 //    }
     public StatusDTO CountAndAvg() {
         return personRepository.getStat();
+    }
+
+    public List<Person> findPersonWithSorting(String name) {
+        return personRepository.findAll(Sort.by(Sort.Direction.ASC, name));
+    }
+
+    public Page<Person> findPersonWithPagination(int page, int size) {
+        return personRepository.findAll(PageRequest.of(page, size));
+
+    }
+
+    public Page<Person> findPersonWithPaginationAndSorting(int offset, int pageSize, String field) {
+
+        Page<Person> persons = personRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
+        return persons;
     }
 
 }

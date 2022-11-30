@@ -2,6 +2,7 @@ package com.example.SimpleAPI.person;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class PersonController {
         personService.updatePerson(personId, person);
     }
 
-    //    @GetMapping(path = "count")
+//    @GetMapping(path = "count")
 //    public int COUNT() {
 //        return personService.CountPerson();
 //    }
@@ -58,5 +59,13 @@ public class PersonController {
         return personService.CountAndAvg();
     }
 
+    @GetMapping(path = "{field}")
+    public List<Person> getPersonsWithSort(@PathVariable String field) {
+        return personService.findPersonWithSorting(field);
+    }
 
+    @GetMapping(path = "pagination")
+    public Page<Person> getPersonWithPagination(@RequestParam int page, @RequestParam int size) {
+        return personService.findPersonWithPagination(page, size);
+    }
 }
