@@ -15,9 +15,7 @@ public class PersonService {
     private final PersonRepository personRepository;
 
     @Autowired
-    public PersonService(
-            PersonRepository personRepository
-    ) {
+    public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
@@ -39,10 +37,7 @@ public class PersonService {
         personRepository.deleteById(personId);
     }
 
-    public void updatePerson(
-            Long personId,
-            Person person
-    ) {
+    public void updatePerson(Long personId, Person person) {
 
         Person oldperson = personRepository.findById(personId).orElseThrow(() -> new IllegalStateException("person with id" + personId + "does not exists"));
 
@@ -68,17 +63,26 @@ public class PersonService {
         personRepository.save(alex);
     }
 
-    public int CountPerson() {
-        return personRepository.findAll().size();
-    }
-
-    public int AverageAgePerson() {
+    //    public int CountPerson() {
+//        return personRepository.findAll().size();
+//    }
+//
+//    public int AverageAgePerson() {
+//        List<Person> personList = personRepository.findAll();
+//        int Avg_age = 0;
+//        for (Person person : personList) {
+//            Avg_age += person.getAge();
+//        }
+//        return Avg_age / personList.size();
+//    }
+    public StatusDTO CountAndAvg() {
         List<Person> personList = personRepository.findAll();
         int Avg_age = 0;
         for (Person person : personList) {
             Avg_age += person.getAge();
         }
-        return Avg_age / personList.size();
+        StatusDTO statusDT = new StatusDTO(personRepository.findAll().size(), (Avg_age / personList.size()));
+        return statusDT;
     }
 
 }

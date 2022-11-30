@@ -44,14 +44,18 @@ public class PersonController {
         personService.updatePerson(personId, person);
     }
 
-    @GetMapping(path = "count")
-    public int COUNT() {
-        return personService.CountPerson();
-    }
-
-    @GetMapping(path = "avg")
-    public int AverageAgePerson() {
-        return personService.AverageAgePerson();
+    //    @GetMapping(path = "count")
+//    public int COUNT() {
+//        return personService.CountPerson();
+//    }
+//
+//    @GetMapping(path = "avg")
+//    public int AverageAgePerson() {
+//        return personService.AverageAgePerson();
+//    }
+    @GetMapping(path = "dto")
+    public StatusDTO CountAndAvg() {
+        return personService.CountAndAvg();
     }
 
 
