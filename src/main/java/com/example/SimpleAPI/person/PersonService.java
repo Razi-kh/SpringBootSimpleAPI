@@ -27,7 +27,7 @@ public class PersonService {
 
     public Person addNewPerson(Person person) {
         // Optional<Person> personOptional = personRepository.findById(person.getId());
-       return personRepository.save(person);
+        return personRepository.save(person);
     }
 
     public void deletePerson(Long personId) {
@@ -59,12 +59,26 @@ public class PersonService {
 
     }
 
-    public void AddPerson(){
-        Person Razi = new Person( "Razi", "RAZ", 20);
+    public void AddPerson() {
+        Person Razi = new Person("Razi", "RAZ", 20);
 
         Person alex = new Person("Alex", "alex", 12);
 
         personRepository.save(Razi);
         personRepository.save(alex);
     }
+
+    public int CountPerson() {
+        return personRepository.findAll().size();
+    }
+
+    public int AverageAgePerson() {
+        List<Person> personList = personRepository.findAll();
+        int Avg_age = 0;
+        for (Person person : personList) {
+            Avg_age += person.getAge();
+        }
+        return Avg_age / personList.size();
+    }
+
 }
